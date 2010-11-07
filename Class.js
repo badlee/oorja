@@ -162,7 +162,7 @@ Class.mix = function(a, b){
 
 /**
 * Glue the scope of given function to given object with given arguments
-* same as Function.prototype.bind in famous frameworks but not poluting namespace ;)
+* same as Function.prototype.bind in famous frameworks but not polluting namespace ;)
 */
 
 Class.glue = function(){
