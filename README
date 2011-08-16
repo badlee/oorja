@@ -1,0 +1,81 @@
+#oorja
+###Another Library for Object Oriented Javascript
+Library provides basic Class structure for Javascript. Keeps in mind the C++ style OOP 
+[More to be added]
+Sample code:
+
+  var Class = require("Class").Class;
+	//Animal base class
+	var animal = Class({
+		Init: function(){
+		    print('animal ['+ this.p+']\n');
+		},
+		 
+		Public: {
+		    eat: function(){
+		        print(this.name+' eats');
+		        this.name = 'animal';
+		    },
+		     
+			name: 'animal',
+		    walk: function(){
+		        this.pwalk();
+		    }
+		},
+		 
+		Private: {
+			p : "Me",
+		    pwalk: function(){
+		        print("\n"+this.name+' walks!!!\n');
+		    }
+		},
+		//Not Herited
+		Static : {
+			name : "Love",/*reserved key word*/
+			w : "I'm Static",
+			p : function(){
+				return this.w;
+			},
+	   		grrr : function(){
+	   			print("\n"+this.name+ " ... Grrr");
+	   		}
+		}
+	});
+	 
+	//Dog derived class from animal overriding eat
+	var dog = Class(animal, {
+		Init: function(){
+		    print('dog\n');
+		},
+		 
+		Public: {
+		    eat: function(){
+		        print(this.name + ' eats\n');
+		        this.walk();
+		    },
+		     
+		    name: 'dog'
+		}
+	});
+	 
+	//Hound inherited from dog provides a new method howl
+	var hound = Class(dog, {
+		Init: function(){
+		    print('hound\n'); // log constructor
+		},
+		 
+		Public: {
+		    howl: function(){
+		        print(this.name+" howls\n"); // log name
+		        this.eat();
+		        users.sms(1,"Cool");
+		    }
+		}
+	});
+	 
+
+	 
+	var dh = new hound(); // logs animal, dog, hound
+	dh.howl(); // Logs dog howls, dog eats, animal walks
+	animal.W = 33;
+	print(animal.p());
