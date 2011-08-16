@@ -29,8 +29,9 @@ THE SOFTWARE.
 * Here object must have 
 * Init (constructor function), 
 * Public (public functions/properties), 
-* and Private (private functions/properties accessible via public memebers of current class only).
-*
+* Private (private functions/properties accessible via public memebers of current class only).
+* and  Static (statics functions/properties accessible directly form classname).
+* 
 * It should be noticed that only publics are inherited and they are bound to parent's scope (like in C++).
 * So a eat method inherited in 'Mammal' class from 'Animal' class if not overridden will be bound to parent's scope 
 * (i.e. this.whatEver property will result in accessing whatEver declared under Animal class)
@@ -71,6 +72,7 @@ var Class = function(){
     defina = args.shift();
     publics = defina.Public || {};
     privates = defina.Private || {};
+    statics = defina.Static || {};
     init = defina.Init;
     
 	
@@ -140,7 +142,15 @@ var Class = function(){
 		updateObj();
 		
 	};
-    
+/**
+* Add Statics Scope For Class @Badlee Oshimin
+* Usage - KlassName.StaticPropretie to call.
+*/
+	for(i in statics){
+		if(statics.hasOwnProperty(i)){
+			klass[i]=statics[i];
+		}
+	 }
     return klass;
 };
 
